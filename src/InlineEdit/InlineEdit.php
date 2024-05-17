@@ -6,6 +6,7 @@ namespace Ublaboo\DataGrid\InlineEdit;
 
 use Nette;
 use Nette\Forms\Container;
+use Nette\Forms\Controls\SelectBox;
 use Nette\SmartObject;
 use Nette\Utils\Html;
 use Ublaboo\DataGrid\DataGrid;
@@ -220,7 +221,11 @@ class InlineEdit
 					break;
 				default:
 					if ($control->getControl()->getAttribute('class') === null) {
-						$control->setAttribute('class', 'form-control input-sm form-control-sm');
+                        			if ($control instanceof SelectBox) {
+                            				$control->setAttribute('class', 'form-select input-sm form-select-sm');
+                        			} else {
+                            				$control->setAttribute('class', 'form-control input-sm form-control-sm');
+                        			}
 					}
 
 					break;
